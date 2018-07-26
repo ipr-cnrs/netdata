@@ -1,0 +1,39 @@
+---
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
+
+# ipr-cnrs.netdata default variables [[[
+# ======================================
+
+# Packages and installation [[[
+# -----------------------------
+
+# .. envvar:: netdata__base_packages [[[
+#
+# List of base packages to install.
+netdata__base_packages:
+    - 'netdata'
+                                                                       # ]]]
+# .. envvar:: netdata__install_recommends [[[
+#
+# If recommended packages should be install ? Possible options :
+#
+# ``True``
+#   Default. Ensure all probes can work.
+#
+# ``False``
+#
+netdata__install_recommends: True
+                                                                   # ]]]
+# .. envvar:: netdata__deploy_state [[[
+#
+# What is the desired state which this role should achieve ? Possible options :
+#
+# ``present``
+#   Default. Ensure that netdata is installed and configured as requested.
+#
+# ``absent``
+#   Ensure that netdata is uninstalled and it's configuration is removed.
+#
+netdata__deploy_state: 'present'
+                                                                   # ]]]
+                                                                   # ]]]
