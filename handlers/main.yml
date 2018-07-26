@@ -1,0 +1,10 @@
+---
+# handlers file for netdata
+- name: Restart Netdata service
+  service:
+    name: '{{ netdata__service_name }}'
+    state: '{{ "restarted" if (netdata__deploy_state | bool and
+                               netdata__service_manage | bool) else "stopped" }}'
+    enabled: '{{ netdata__service_manage | bool }}'
+    #state: '{{ "restarted" if (netdata__deploy_state | bool and
+                               #netdata__service_manage | bool) else omit }}'

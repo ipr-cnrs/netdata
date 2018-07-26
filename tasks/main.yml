@@ -23,6 +23,7 @@
     mode: '0755'
   with_filetree: '{{ netdata__etc_src }}'
   when: item.state == 'directory'
+  notify: ['Restart Netdata service']
 
 - name: Generate Netdata configuration files
   template:
@@ -33,6 +34,7 @@
     mode: '{{ item.mode }}'
   with_filetree: '{{ netdata__etc_src }}'
   when: item.state == 'file'
+  notify: ['Restart Netdata service']
 
 - name: Generate Netdata configuration symlinks
   template:
@@ -42,3 +44,4 @@
     force: true
   with_filetree: '{{ netdata__etc_src }}'
   when: item.state == 'link'
+  notify: ['Restart Netdata service']

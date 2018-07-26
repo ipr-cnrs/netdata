@@ -36,6 +36,26 @@ netdata__install_recommends: True
 #
 netdata__deploy_state: 'present'
                                                                    # ]]]
+# .. envvar:: netdata__service_name [[[
+#
+# The service name to manage.
+#
+netdata__service_name: 'netdata'
+
+                                                                   # ]]]
+# .. envvar:: netdata__service_manage [[[
+#
+# If the Netdata service should be managed ? Possible options :
+#
+# ``True``
+#   Default. The service is started and enabled.
+#
+# ``False``
+#   The service is disabled from startup.
+#
+netdata__service_manage: True
+
+                                                                   # ]]]
                                                                    # ]]]
 # Configuration [[[
 # -----------------------------

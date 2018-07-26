@@ -18,6 +18,8 @@ A role to manage Netdata installation and configuration.
 * **netdata__install_recommends** : If recommends packages should be install [default : `True`].
 * **netdata__deploy_state** : The desired state this role should achieve. [default : `present`].
 * **netdata__etc_src** : Directory used as source to templating /etc/netdata configuration content [default : `../templates/etc/netdata`].
+* **netdata__service_name** : The service name to manage [default : `netdata`].
+* **netdata__service_manage** : If the Netdata services should be managed [default : `True`].
 
 ## Example Playbook
 
@@ -60,6 +62,7 @@ mynode.DOMAIN
 This role will :
 * Install needed packages to provide `netdata` service.
 * Manage Netdata configuration (/etc/netdata).
+* Ensure Netdata service is enabled and started.
 
 ## Development
 
