@@ -17,22 +17,49 @@ A role to manage Netdata installation and configuration.
 * **netdata__base_packages** : List of base packages in order to provide Netdata [default : `netdata`].
 * **netdata__install_recommends** : If recommends packages should be install [default : `True`].
 * **netdata__deploy_state** : The desired state this role should achieve. [default : `present`].
+* **netdata__etc_src** : Directory used as source to templating /etc/netdata configuration content [default : `../templates/etc/netdata`].
 
 ## Example Playbook
 
 * Use defaults vars :
 
 ``` yaml
-- hosts: mynode.domain
+- hosts: mynode.DOMAIN
   roles:
     - role: ipr-cnrs.netdata
       tags: ['role::netdata', 'ipr']
+```
+
+* Use your own Netdata's configuration as source :
+
+``` yml
+- hosts: mynode.DOMAIN
+  roles:
+    - role: ipr-cnrs.netdata
+      netdata__etc_src: '{{ inventory_dir + "/../resources/host/mynode.DOMAIN/etc/netdata/" }}'
+```
+
+  * Ensure your directory contains only templates or sub-directories, such as :
+
+``` sh
+mynode.DOMAIN
+└── etc
+    └── netdata
+        ├── fping.conf.j2
+        ├── health_alarm_notify.conf.j2
+        ├── netdata.conf.j2
+        └── node.d
+            ├── named.conf.md.j2
+            ├── README.md.j2
+            ├── sma_webbox.conf.md.j2
+            └── snmp.conf.md.j2
 ```
 
 ## Configuration
 
 This role will :
 * Install needed packages to provide `netdata` service.
+* Manage Netdata configuration (/etc/netdata).
 
 ## Development
 

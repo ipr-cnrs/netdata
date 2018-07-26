@@ -37,3 +37,18 @@ netdata__install_recommends: True
 netdata__deploy_state: 'present'
                                                                    # ]]]
                                                                    # ]]]
+# Configuration [[[
+# -----------------------------
+
+# .. envvar:: netdata__etc_src [[[.
+# Directory with templates used to provide Netdata configuration (usually in
+# '/etc/netdata').
+#
+# Must be a relative path to default directory of this role
+# or to your ansible inventory directory.
+#
+netdata__etc_src: '../templates/etc/netdata'
+
+                                                                   # ]]]
+
+                                                                   # ]]]

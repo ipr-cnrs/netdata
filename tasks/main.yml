@@ -13,3 +13,32 @@
     - '{{ netdata__base_packages }}'
 
 
+# Server Manage /etc configuration files [[[1
+- name: Ensure Netdata directory structure exists
+  file:
+    path: '/etc/netdata/{{ item.path }}'
+    state: directory
+    owner: 'root'
+    group: 'netdata'
+    mode: '0755'
+  with_filetree: '{{ netdata__etc_src }}'
+  when: item.state == 'directory'
+
+- name: Generate Netdata configuration files
+  template:
+    src: '{{ item.src }}'
+    dest: "/etc/netdata/{{ item.path | replace('.j2','') }}"
+    owner: 'root'
+    group: 'netdata'
+    mode: '{{ item.mode }}'
+  with_filetree: '{{ netdata__etc_src }}'
+  when: item.state == 'file'
+
+- name: Generate Netdata configuration symlinks
+  template:
+    src: '{{ item.src }}'
+    dest: "/etc/netdata/{{ item.path | replace('.j2','') }}"
+    state: 'link'
+    force: true
+  with_filetree: '{{ netdata__etc_src }}'
+  when: item.state == 'link'
