@@ -22,6 +22,7 @@ A role to manage Netdata installation and configuration.
 * **netdata__service_manage** : If the Netdata services should be managed [default : `True`].
 * **netdata__conf_bind_ip** : IP address used by Netdata to listen [default : `127.0.0.1`].
 * **netdata__conf_bind_port** : Port used by Netdata to listen [default : `19999`].
+* **netdata__conf_memory_mode** : The memory mode of the database [default : `ram`].
 
 ## Example Playbook
 

@@ -84,5 +84,15 @@ netdata__conf_bind_ip: '127.0.0.1'
 netdata__conf_bind_port: '19999'
 
                                                                    # ]]]
+# .. envvar:: netdata__conf_memory_mode [[[.
+#
+# The memory mode of the database.
+#
+# Check the possible options on Netdata wiki :
+# https://github.com/firehol/netdata/wiki/Memory-Requirements#memory-modes
+#
+netdata__conf_memory_mode: 'ram'
+
+                                                                   # ]]]
 
                                                                    # ]]]
