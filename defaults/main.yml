@@ -70,5 +70,19 @@ netdata__service_manage: True
 netdata__etc_src: '../templates/etc/netdata'
 
                                                                    # ]]]
+# .. envvar:: netdata__conf_bind_ip [[[.
+#
+# IP address Netdata will listen to.
+#
+netdata__conf_bind_ip: '127.0.0.1'
+
+                                                                   # ]]]
+# .. envvar:: netdata__conf_bind_port [[[.
+#
+# Port Netdata will listen to.
+#
+netdata__conf_bind_port: '19999'
+
+                                                                   # ]]]
 
                                                                    # ]]]

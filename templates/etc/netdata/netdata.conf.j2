@@ -18,4 +18,6 @@
 	web files group = root
 	# Netdata is not designed to be exposed to potentially hostile
 	# networks.See https://github.com/firehol/netdata/issues/164
-	bind socket to IP = 127.0.0.1
+
+[web]
+	bind to = {{ netdata__conf_bind_ip }}:{{ netdata__conf_bind_port }}
