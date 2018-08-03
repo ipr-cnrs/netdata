@@ -12,7 +12,6 @@
   with_flattened:
     - '{{ netdata__base_packages }}'
 
-
 # Server Manage /etc configuration files [[[1
 - name: Ensure Netdata directory structure exists
   file:
@@ -22,7 +21,7 @@
     group: 'netdata'
     mode: '0755'
   with_filetree: '{{ netdata__etc_src }}'
-  when: item.state == 'directory'
+  when: (item.state == 'directory') and (netdata__deploy_state == "present")
   notify: ['Restart Netdata service']
 
 - name: Generate Netdata configuration files
@@ -33,7 +32,7 @@
     group: 'netdata'
     mode: '{{ item.mode }}'
   with_filetree: '{{ netdata__etc_src }}'
-  when: item.state == 'file'
+  when: (item.state == 'file') and (netdata__deploy_state == "present")
   notify: ['Restart Netdata service']
 
 - name: Generate Netdata configuration symlinks
@@ -43,5 +42,5 @@
     state: 'link'
     force: true
   with_filetree: '{{ netdata__etc_src }}'
-  when: item.state == 'link'
+  when: (item.state == 'link') and (netdata__deploy_state == "present")
   notify: ['Restart Netdata service']
