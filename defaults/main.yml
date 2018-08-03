@@ -57,7 +57,7 @@ netdata__service_manage: True
 
                                                                    # ]]]
                                                                    # ]]]
-# Configuration [[[
+# Common configuration [[[
 # -----------------------------
 
 # .. envvar:: netdata__etc_src [[[.
@@ -92,6 +92,95 @@ netdata__conf_bind_port: '19999'
 # https://github.com/firehol/netdata/wiki/Memory-Requirements#memory-modes
 #
 netdata__conf_memory_mode: 'ram'
+
+                                                                   # ]]]
+
+                                                                   # ]]]
+# Slave configuration [[[
+# -----------------------------
+
+# .. envvar:: netdata__slave_enable [[[.
+#
+# If node should send metrics to a master. Possible options :
+#
+#
+# ``False``
+#   Default.
+#
+# ``True``
+#
+netdata__slave_enable: False
+
+                                                                   # ]]]
+# .. envvar:: netdata__slave_destination [[[.
+#
+# The destination to send metrics to.
+# https://github.com/firehol/netdata/wiki/Replication-Overview#options-for-the-sending-node
+#
+netdata__slave_destination: 'netdata.{{ ansible_domain }}'
+
+                                                                   # ]]]
+# .. envvar:: netdata__slave_api_key [[[.
+#
+# The API KEY to use (as the sender).
+# https://github.com/firehol/netdata/wiki/Replication-Overview#streaming-configuration
+#
+netdata__slave_api_key: ''
+
+                                                                   # ]]]
+# .. envvar:: netdata__slave_buffer_size [[[.
+#
+# The buffer to use for sending metrics.
+# 1MB by default is good for 2-3 seconds of data.
+#
+netdata__slave_buffer_size: '1048576'
+
+                                                                   # ]]]
+# .. envvar:: netdata__slave_reconnect [[[.
+#
+# If the connection fails, or it disconnects, retry after that many seconds.
+#
+netdata__slave_reconnect: '5'
+
+                                                                   # ]]]
+
+                                                                   # ]]]
+# Master configuration [[[
+# -----------------------------
+
+# .. envvar:: netdata__master_enable [[[.
+#
+# If node should receive metrics from other nodes. Possible options :
+#
+#
+# ``False``
+#   Default.
+#
+# ``True``
+#
+netdata__master_enable: False
+
+                                                                   # ]]]
+# .. envvar:: netdata__master_api_key [[[.
+#
+# The API key to authenticate slaves.
+#
+netdata__master_api_key: ''
+
+                                                                   # ]]]
+# .. envvar:: netdata__master_history [[[.
+#
+# The number of entries in the database per hosts.
+#
+netdata__master_history: '3600'
+
+                                                                   # ]]]
+# .. envvar:: netdata__master_memory_mode [[[.
+#
+# The memory mode to be used for all hosts using this API key.
+# https://github.com/firehol/netdata/wiki/Memory-Requirements#memory-modes
+#
+netdata__master_memory_mode: 'ram'
 
                                                                    # ]]]
 

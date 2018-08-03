@@ -23,6 +23,15 @@ A role to manage Netdata installation and configuration.
 * **netdata__conf_bind_ip** : IP address used by Netdata to listen [default : `127.0.0.1`].
 * **netdata__conf_bind_port** : Port used by Netdata to listen [default : `19999`].
 * **netdata__conf_memory_mode** : The memory mode of the database [default : `ram`].
+* **netdata__slave_enable** : If node should send metrics to a master [default : `False`].
+* **netdata__slave_destination** : The destination to send metrics to [default : `netdata.{{ ansible_domain }}`].
+* **netdata__slave_api_key** : The API KEY to use to identify with the master [default : `''`].
+* **netdata__slave_buffer_size** : The buffer to use for sending metrics [default : ``].
+* **netdata__slave_reconnect** : If the connection fails, or it disconnects, retry after that many seconds [default : `5`].
+* **netdata__master_enable** : If node should receive metrics from other nodes [default : `False`].
+* **netdata__master_api_key** : The API key to authenticate slaves [default : `''`].
+* **netdata__master_history** : The number of entries in the database per hosts [default : `3600`].
+* **netdata__master_memory_mode** : The memory mode to be used for all hosts using this API key [default : `ram`].
 
 ## Example Playbook
 
