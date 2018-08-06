@@ -20,7 +20,11 @@
     owner: 'root'
     group: 'netdata'
     mode: '0755'
-  with_filetree: '{{ netdata__etc_src }}'
+  with_filetree:
+    - '{{ netdata__host_etc_src }}'
+    - '{{ netdata__group_etc_src }}'
+    - '{{ netdata__etc_src }}'
+    - '{{ netdata__default_etc_src }}'
   when: (item.state == 'directory') and (netdata__deploy_state == "present")
   notify: ['Restart Netdata service']
 
@@ -31,7 +35,11 @@
     owner: 'root'
     group: 'netdata'
     mode: '{{ item.mode }}'
-  with_filetree: '{{ netdata__etc_src }}'
+  with_filetree:
+    - '{{ netdata__host_etc_src }}'
+    - '{{ netdata__group_etc_src }}'
+    - '{{ netdata__etc_src }}'
+    - '{{ netdata__default_etc_src }}'
   when: (item.state == 'file') and (netdata__deploy_state == "present")
   notify: ['Restart Netdata service']
 
@@ -41,6 +49,10 @@
     dest: "/etc/netdata/{{ item.path | replace('.j2','') }}"
     state: 'link'
     force: true
-  with_filetree: '{{ netdata__etc_src }}'
+  with_filetree:
+    - '{{ netdata__host_etc_src }}'
+    - '{{ netdata__group_etc_src }}'
+    - '{{ netdata__etc_src }}'
+    - '{{ netdata__default_etc_src }}'
   when: (item.state == 'link') and (netdata__deploy_state == "present")
   notify: ['Restart Netdata service']

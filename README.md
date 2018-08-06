@@ -17,7 +17,11 @@ A role to manage Netdata installation and configuration.
 * **netdata__base_packages** : List of base packages in order to provide Netdata [default : `netdata`].
 * **netdata__install_recommends** : If recommends packages should be install [default : `True`].
 * **netdata__deploy_state** : The desired state this role should achieve. [default : `present`].
-* **netdata__etc_src** : Directory used as source to templating /etc/netdata configuration content [default : `../templates/etc/netdata`].
+* **netdata__group_name** : Name of the directory which contains configuration files for this specific group [default : `nonexistent-host-group`].
+* **netdata__default_etc_src** : Directory which contains configuration files for Netdata from this role [default : `../templates/etc/netdata`].
+* **netdata__etc_src** : Directory which contains configuration files that should be managed on all hosts [default : `../templates/etc/netdata`].
+* **netdata__group_etc_src** : Directory which contains configuration files for Netdata that should be managed by a specific Ansible inventory group [default : `{{ (inventory_dir | realpath + "/../resources/") + "files/by-group/" + netdata__group_name + "/etc/netdata" }}`].
+* **netdata__host_etc_src** : Directory which contains configuration files for Netdata that should be managed on specific host [default : `{{ (inventory_dir | realpath + "/../resources/") + "files/by-host/" + inventory_hostname  + "/etc/netdata" }}`].
 * **netdata__service_name** : The service name to manage [default : `netdata`].
 * **netdata__service_manage** : If the Netdata services should be managed [default : `True`].
 * **netdata__conf_bind_ip** : IP address used by Netdata to listen [default : `127.0.0.1`].
@@ -45,28 +49,27 @@ A role to manage Netdata installation and configuration.
 ```
 
 * Use your own Netdata's configuration as source :
-
-``` yml
-- hosts: mynode.DOMAIN
-  roles:
-    - role: ipr-cnrs.netdata
-      netdata__etc_src: '{{ inventory_dir + "/../resources/host/mynode.DOMAIN/etc/netdata/" }}'
-```
-
-  * Ensure your directory contains only templates or sub-directories, such as :
+  * Ensure you have resources directory contains only templates or sub-directories, such as :
 
 ``` sh
-mynode.DOMAIN
-└── etc
-    └── netdata
-        ├── fping.conf.j2
-        ├── health_alarm_notify.conf.j2
-        ├── netdata.conf.j2
-        └── node.d
-            ├── named.conf.md.j2
-            ├── README.md.j2
-            ├── sma_webbox.conf.md.j2
-            └── snmp.conf.md.j2
+inventory
+├── group_vars
+│   ├── all
+│   │   ├── ….yml
+│   │   └── netdata.yml
+│   └── …
+resources
+├── files
+│   ├── by-group
+│   │   └── all
+│   │   │   ├── etc
+│   │   │   │   ├── netdata
+│   │   │   │   │   ├── health.d
+│   │   │   │   │   │   └── ram.conf.j2
+│   │   │   │   │   ├── plugins.d
+│   │   │   │   │   │   └── python.d.plugin
+│   │   │   │   │   └── python.d
+│   │   │   │   │       └── fail2ban.chart.py
 ```
 
 * Listen on LAN, be careful, Netdata is not designed to be exposed (see [issue 64][netdata issue 164]) :
@@ -83,7 +86,7 @@ mynode.DOMAIN
 
 This role will :
 * Install needed packages to provide `netdata` service.
-* Manage Netdata configuration directory (/etc/netdata).
+* Manage Netdata configuration directory (/etc/netdata) from several sources (netdata__default_etc_src, netdata__etc_src, netdata__group_etc_src and netdata__host_etc_src).
 * Ensure Netdata service is enabled and started.
 * Set up some basics configuration (bind ip, port,…).
 

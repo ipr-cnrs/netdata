@@ -60,14 +60,50 @@ netdata__service_manage: True
 # Common configuration [[[
 # -----------------------------
 
+# .. envvar:: netdata__group_name [[[.
+#
+# Name of the directory which contains configuration files which should be
+# generated on hosts in a specific group. This variable needs to be set on a
+# group level in the inventory to take effect. Only one group is supported at
+# a time.
+netdata__group_name: 'nonexistent-host-group'
+
+                                                                   # ]]]
+# .. envvar:: netdata__default_etc_src [[[.
+#
+# Directory which contains configuration files from this role that should be
+# managed on all hosts.
+netdata__default_etc_src: '../templates/etc/netdata'
+
+                                                                   # ]]]
 # .. envvar:: netdata__etc_src [[[.
-# Directory with templates used to provide Netdata configuration (usually in
-# '/etc/netdata').
 #
-# Must be a relative path to default directory of this role
-# or to your ansible inventory directory.
+# Directory which contains configuration files that should be managed on all
+# hosts in the Ansible inventory.
 #
-netdata__etc_src: '../templates/etc/netdata'
+# Must be a relative path to group directory of this role or to your
+# ansible inventory directory.
+netdata__etc_src: '{{ (inventory_dir | realpath + "/../resources/") + "files/by-group/all/etc/netdata/" }}'
+
+                                                                   # ]]]
+# .. envvar:: netdata__group_etc_src [[[.
+#
+# Directory which contains configuration files for Netdata that should be
+# managed on hosts in a specific Ansible inventory group.
+#
+# Must be a relative path to Netdata group directory on your Ansible inventory
+# directory.
+netdata__group_etc_src: '{{ (inventory_dir | realpath + "/../resources/") + "files/by-group/" + netdata__group_name + "/etc/netdata" }}'
+
+                                                                   # ]]]
+# .. envvar:: netdata__host_etc_src [[[.
+#
+# Directory which contains configuration files for Netdata that should be
+# managed on specific host in the Ansible inventory for Netdata.
+#
+# Must be a relative path to Netdata configuration directory for these hosts in
+# your Ansible inventory directory.
+netdata__host_etc_src: '{{ (inventory_dir | realpath + "/../resources/") + "files/by-host/" + inventory_hostname  + "/etc/netdata" }}'
 
                                                                    # ]]]
 # .. envvar:: netdata__conf_bind_ip [[[.
