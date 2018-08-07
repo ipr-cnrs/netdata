@@ -36,6 +36,7 @@ A role to manage Netdata installation and configuration.
 * **netdata__master_api_key** : The API key to authenticate slaves [default : `''`].
 * **netdata__master_history** : The number of entries in the database per hosts [default : `3600`].
 * **netdata__master_memory_mode** : The memory mode to be used for all hosts using this API key [default : `ram`].
+* **netdata__master_health_alarm** : Shall the master send alarms for hosts using the API key [default : `auto`].
 
 ## Example Playbook
 

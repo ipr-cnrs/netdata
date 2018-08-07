@@ -188,7 +188,6 @@ netdata__slave_reconnect: '5'
 #
 # If node should receive metrics from other nodes. Possible options :
 #
-#
 # ``False``
 #   Default.
 #
@@ -217,6 +216,21 @@ netdata__master_history: '3600'
 # https://github.com/firehol/netdata/wiki/Memory-Requirements#memory-modes
 #
 netdata__master_memory_mode: 'ram'
+
+                                                                   # ]]]
+# .. envvar:: netdata__master_health_alarm [[[.
+#
+# Shall the master send alarms for hosts using the API key. Possible options :
+#
+# ``auto``
+# Default. Enable alarms, only when the sending Netdata is connected.
+#
+# ``yes``
+# Enable alarms.
+#
+# ``no``
+# Do not enable alarms
+netdata__master_health_alarm: 'auto'
 
                                                                    # ]]]
 

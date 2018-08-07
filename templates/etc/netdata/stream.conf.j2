@@ -105,7 +105,7 @@
 	#    auto    enable alarms, only when the sending netdata is connected
 	# You can also set it per host, below.
 	# The default is the same as to netdata.conf
-	health enabled by default = auto
+	health enabled by default = {{ netdata__master_health_alarm }}
 
 	# postpone alarms for a short period after the sender is connected
 	default postpone alarms on connect seconds = 60
