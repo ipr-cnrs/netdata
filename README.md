@@ -27,6 +27,9 @@ A role to manage Netdata installation and configuration.
 * **netdata__conf_bind_ip** : IP address used by Netdata to listen [default : `127.0.0.1`].
 * **netdata__conf_bind_port** : Port used by Netdata to listen [default : `19999`].
 * **netdata__conf_memory_mode** : The memory mode of the database [default : `ram`].
+* **netdata__registry_enable** : If node should be a registry [default : `False`].
+* **netdata__registry_announce** : The URL of the registry [default : `''`].
+* **netdata__registry_hostname** : The server name to display on the registry (max 50. char) [default : `{{ ansible_hostname }}`].
 * **netdata__slave_enable** : If node should send metrics to a master [default : `False`].
 * **netdata__slave_destination** : The destination to send metrics to [default : `netdata.{{ ansible_domain }}`].
 * **netdata__slave_api_key** : The API KEY to use to identify with the master [default : `''`].
@@ -90,6 +93,8 @@ This role will :
 * Manage Netdata configuration directory (/etc/netdata) from several sources (netdata__default_etc_src, netdata__etc_src, netdata__group_etc_src and netdata__host_etc_src).
 * Ensure Netdata service is enabled and started.
 * Set up some basics configuration (bind ip, port,…).
+* Set up registry configuration (take a look on the [documentation][netdata wiki registry]).
+* Can set up a slave/master configuration, but it's highly recommended to take a look to registry before.
 
 ## Development
 
@@ -116,3 +121,4 @@ Jérémy Gardais
 [ipr website]: https://ipr.univ-rennes1.fr/
 [netdata issue 164]: https://github.com/firehol/netdata/issues/164
 [netdata wiki security]: https://github.com/firehol/netdata/wiki/netdata-security#protect-netdata-from-the-internet
+[netdata wiki registry]: https://github.com/firehol/netdata/wiki/mynetdata-menu-item#what-is-the-registry

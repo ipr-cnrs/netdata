@@ -23,3 +23,14 @@
 	# Netdata is not designed to be exposed to potentially hostile
 	# networks.See https://github.com/firehol/netdata/issues/164
 	bind to = {{ netdata__conf_bind_ip }}:{{ netdata__conf_bind_port }}
+
+{% if netdata__registry_announce %}
+[registry]
+{% if netdata__registry_enable %}
+	enabled = yes
+{% else %}
+	enabled = no
+{% endif %}
+	registry to announce = {{ netdata__registry_announce }}
+	registry hostname = {{ netdata__registry_hostname }}
+{%- endif %}

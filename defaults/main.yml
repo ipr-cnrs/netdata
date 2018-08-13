@@ -132,6 +132,40 @@ netdata__conf_memory_mode: 'ram'
                                                                    # ]]]
 
                                                                    # ]]]
+# Registry configuration [[[
+# -----------------------------
+
+# .. envvar:: netdata__registry_enable [[[.
+#
+# If node should be a registry. Possible options :
+#
+# ``False``
+#   Default.
+#
+# ``True``
+#   See https://github.com/firehol/netdata/wiki/mynetdata-menu-item#what-is-the-registry
+#
+netdata__registry_enable: False
+
+                                                                   # ]]]
+# .. envvar:: netdata__registry_announce [[[.
+#
+# The URL of the registry.
+#
+# Default empty, so the default one will be used (https://registry.my-netdata.io).
+#
+netdata__registry_announce: ''
+
+                                                                   # ]]]
+# .. envvar:: netdata__registry_hostname [[[.
+#
+# The server name to display on the registry (max 50. char).
+#
+netdata__registry_announce: '{{ ansible_hostname }}'
+
+                                                                   # ]]]
+
+                                                                   # ]]]
 # Slave configuration [[[
 # -----------------------------
 

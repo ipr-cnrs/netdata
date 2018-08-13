@@ -11,3 +11,4 @@
 * Define some vars to manage master and slaves configuration.
 * Combine 4 vars to generate Netdata configuration.
 * Slaves alarms can be disable, the master will not send alarms.
+* Possibility to manage a registry.
