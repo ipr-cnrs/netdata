@@ -161,7 +161,7 @@ netdata__registry_announce: ''
 #
 # The server name to display on the registry (max 50. char).
 #
-netdata__registry_announce: '{{ ansible_hostname }}'
+netdata__registry_hostname: '{{ ansible_hostname }}'
 
                                                                    # ]]]
 
