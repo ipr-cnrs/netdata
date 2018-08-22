@@ -27,6 +27,7 @@ A role to manage Netdata installation and configuration.
 * **netdata__conf_bind_ip** : IP address used by Netdata to listen [default : `127.0.0.1`].
 * **netdata__conf_bind_port** : Port used by Netdata to listen [default : `19999`].
 * **netdata__conf_memory_mode** : The memory mode of the database [default : `ram`].
+* **netdata__conf_recipient_emaiThe default email recipient to use if a role doesn't define one [default : `root`].
 * **netdata__registry_enable** : If node should be a registry [default : `False`].
 * **netdata__registry_announce** : The URL of the registry [default : `''`].
 * **netdata__registry_hostname** : The server name to display on the registry (max 50. char) [default : `{{ ansible_hostname }}`].

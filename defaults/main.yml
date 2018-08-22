@@ -130,6 +130,19 @@ netdata__conf_bind_port: '19999'
 netdata__conf_memory_mode: 'ram'
 
                                                                    # ]]]
+# .. envvar:: netdata__conf_recipient_email [[[.
+#
+# The default email recipient to use if a role doesn't define one.
+#
+# 'root'
+# Default.
+#
+# Check the possible options on Netdata wiki :
+# https://github.com/firehol/netdata/wiki/email-notifications#configuration
+#
+netdata__conf_recipient_email: 'root'
+
+                                                                   # ]]]
 
                                                                    # ]]]
 # Registry configuration [[[
