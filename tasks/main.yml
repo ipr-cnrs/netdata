@@ -5,7 +5,7 @@
 
 # Manage base system packages [[[1
 - name: Ensure base packages are in there desired state
-  package:
+  ansible.builtin.package:
     name: '{{ netdata__base_packages | flatten }}'
     state: '{{ "present" if (netdata__deploy_state == "present") else "absent" }}'
     install_recommends: '{{ netdata__install_recommends | bool }}'
@@ -14,7 +14,7 @@
 
 # Server Manage /etc configuration files [[[1
 - name: Ensure Netdata directory structure exists
-  file:
+  ansible.builtin.file:
     path: '/etc/netdata/{{ item.path }}'
     state: directory
     owner: 'root'
@@ -29,7 +29,7 @@
   notify: ['Restart Netdata service']
 
 - name: Generate Netdata configuration files
-  template:
+  ansible.builtin.template:
     src: '{{ item.src }}'
     dest: "/etc/netdata/{{ item.path | replace('.j2','') }}"
     owner: 'root'
@@ -44,7 +44,7 @@
   notify: ['Restart Netdata service']
 
 - name: Generate Netdata configuration symlinks
-  template:
+  ansible.builtin.template:
     src: '{{ item.src }}'
     dest: "/etc/netdata/{{ item.path | replace('.j2','') }}"
     state: 'link'
