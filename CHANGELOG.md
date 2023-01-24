@@ -1,3 +1,7 @@
+## v1.0.1
+
+### Fix
+* Use flatten to manage packages list.
 
 ## v1.0.0
 
